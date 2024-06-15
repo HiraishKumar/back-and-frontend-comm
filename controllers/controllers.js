@@ -1,28 +1,13 @@
 const getRoot = (req,res) =>{
-    res.send(
-    `<h1>ROOT ROUTE</h1>
-    <a href="http://localhost:3000/">ROOT ROUTE</a>
-    <a href="http://localhost:3000/search">search ROUTE</a>
-    <a href="http://localhost:3000/viewcart"> viewcart ROUTE</a>`
-    ).status(200)
+    res.json({messege:"ROOT ROUTE"}).status(200)
 }
 
 const getSearch = (req,res) =>{
-    res.send(
-    `<h1>search ROUTE</h1>
-    <a href="http://localhost:3000/">ROOT ROUTE</a>
-    <a href="http://localhost:3000/search">search ROUTE</a>
-    <a href="http://localhost:3000/viewcart"> viewcart ROUTE</a>`
-    ).status(200)
+    res.send({messege:"SEARCH ROUTE"}).status(200)
 }
 
 const getViewcart = (req,res) =>{
-    res.send(
-    `    <h1>viewcart ROUTE</h1>
-    <a href="http://localhost:3000/">ROOT ROUTE</a>
-    <a href="http://localhost:3000/search">search ROUTE</a>
-    <a href="http://localhost:3000/viewcart"> viewcart ROUTE</a>
-    `
+    res.send({messege:"VIEW CART ROUTE"}
     ).status(200)
 }
 

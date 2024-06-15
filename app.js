@@ -8,13 +8,13 @@ const router = require('./routers/routers');
 const app = express()
 
 
-app.use('/',router)
 
 // app.get('/', (req,res)=>{
-//     res.send('<h1>THIS THE ROOT ROUTE</h1>').status(200)
-// })
-
+    //     res.send('<h1>THIS THE ROOT ROUTE</h1>').status(200)
+    // })
 app.use(express.json())
+app.use(express.static('./public'))
+app.use('/',router)
 app.use(notFound)
 app.use(errorHandler)
 
