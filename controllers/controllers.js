@@ -1,17 +1,28 @@
+const Product = require("../models/products")
+
 const getRoot = (req,res) =>{
     res.json({messege:"ROOT ROUTE"}).status(200)
 }
 
-const getSearch = (req,res) =>{
-    res.send({messege:"SEARCH ROUTE"}).status(200)
-}
 
 const getViewcart = (req,res) =>{
     res.send({messege:"VIEW CART ROUTE"}
     ).status(200)
 }
 
-const search = async (req,res) =>{
+const getSearch = (req,res) =>{
+const {name} = req.query
+if (name) {
+    res.send({
+        messege:"SEARCH ROUTE",
+        location:`the name is : ${name}`
+    }).status(200)
+}
+    res.send({messege:"SEARCH ROUTE"}).status(200)
+}
+
+
+const getSearchitem = async (req,res) =>{
     const {featured,name,sort,fields,page,limit,numericFilters } = req.query
     const queryObject = {}
     
@@ -41,6 +52,16 @@ const search = async (req,res) =>{
             queryObject[field] = { [operator]: Number(value) };
           }
         });
+      }
+
+      const hasQueryParameters = Object.keys(queryObject).length > 0 || sort || fields || page || limit;
+
+      // If no query parameters are present, return an empty response
+      if (!hasQueryParameters) {
+          return res.status(200).json({
+              product: [],
+              nbHits: 0
+          });
       }
 
     // console.log(queryObject)
@@ -74,5 +95,5 @@ const search = async (req,res) =>{
 
 
 module.exports = {
-    getRoot,getSearch,getViewcart
+    getRoot,getSearch,getViewcart,getSearchitem
 }
