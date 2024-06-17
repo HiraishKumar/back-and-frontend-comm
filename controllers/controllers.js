@@ -1,25 +1,7 @@
+
+const Path = require('path')
 const Product = require("../models/products")
 
-const getRoot = (req,res) =>{
-    res.json({messege:"ROOT ROUTE"}).status(200)
-}
-
-
-const getViewcart = (req,res) =>{
-    res.send({messege:"VIEW CART ROUTE"}
-    ).status(200)
-}
-
-const getSearch = (req,res) =>{
-const {name} = req.query
-if (name) {
-    res.send({
-        messege:"SEARCH ROUTE",
-        location:`the name is : ${name}`
-    }).status(200)
-}
-    res.send({messege:"SEARCH ROUTE"}).status(200)
-}
 
 
 const getSearchitem = async (req,res) =>{
@@ -95,5 +77,5 @@ const getSearchitem = async (req,res) =>{
 
 
 module.exports = {
-    getRoot,getSearch,getViewcart,getSearchitem
+    getSearchitem
 }

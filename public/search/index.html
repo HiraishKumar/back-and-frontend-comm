@@ -11,54 +11,11 @@
     <a href="http://localhost:3000/">ROOT ROUTE</a>
     <a href="http://localhost:3000/viewcart"> viewcart ROUTE</a>
 
-    <!-- <form method="get" action="http://localhost:3000/search/">
-        <input type="search" name="location" placeholder="Search.." />
-        <input type="submit" value="Go" />
-    </form> -->
-
     <input type="text" id="searchInput" placeholder="Search...">
     <button id="searchButton">Search</button>
     <div id="results"></div>
 
-    <script >
-        document.getElementById('searchButton').addEventListener('click', async () => {
-    const searchInput = document.getElementById('searchInput').value;
-    const url = new URL('http://localhost:3000/search/item');
-
-    // Add search parameters
-    const params = new URLSearchParams();
-    if (searchInput) {
-        params.append('name', searchInput);
-    }
-
-    try {
-        // Fetch data from the server
-        const response = await fetch(`${url}?${params.toString()}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        // Parse the JSON response
-        const data = await response.json();
-
-        // Update the page content dynamically
-        const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = '';  // Clear previous results
-
-        if (data.product.length === 0) {
-            resultsDiv.textContent = 'No results found.';
-        } else {
-            data.product.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}`;
-                resultsDiv.appendChild(itemDiv);
-            });
-        }
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-});
-    </script>
+    <script src="scripts.js"></script>
     </form>
     <script>
 
