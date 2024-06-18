@@ -46,6 +46,10 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     }
 
     try {
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.set("name", searchInput);
+        const newURL = `${window.location.pathname}?${searchParams.toString()}`
+        history.replaceState({},'',newURL)
         // Fetch data from the server
         const response = await fetch(`${url}?${params.toString()}`);
         if (!response.ok) {
@@ -65,6 +69,7 @@ document.getElementById('searchButton').addEventListener('click', async () => {
             itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}`;
             resultsDiv.appendChild(itemDiv);
         });
+
 
         
     } catch (error) {
