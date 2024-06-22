@@ -11,21 +11,15 @@ const URLparams = async ()=>{
     
             // Parse the JSON response
             const data = await response.json();
-            console.log(data)
-    
+            // console.log(data)
+            
             // Update the page content dynamically
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '';  // Clear previous results
-    
-            data.product.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}`;
-                resultsDiv.appendChild(itemDiv);
-            });
+            UpdateHtml(data)
+
         } catch (error) {
             console.error('There has been a problem with your fetch operation:', error);        
     }
-        console.log(current_url_params)
+        // console.log(current_url_params)
     }
     else{
         console.log("no search parameters")
@@ -46,10 +40,9 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     }
 
     try {
-        let searchParams = new URLSearchParams(window.location.search);
-        searchParams.set("name", searchInput);
-        const newURL = `${window.location.pathname}?${searchParams.toString()}`
-        history.replaceState({},'',newURL)
+        // Update URL Dynamically
+        UpdateURL_name(searchInput);
+
         // Fetch data from the server
         const response = await fetch(`${url}?${params.toString()}`);
         if (!response.ok) {
@@ -58,21 +51,30 @@ document.getElementById('searchButton').addEventListener('click', async () => {
 
         // Parse the JSON response
         const data = await response.json();
-        console.log(data)
-
+        // console.log(data)
+        
         // Update the page content dynamically
-        const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = '';  // Clear previous results
-
-        data.product.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}`;
-            resultsDiv.appendChild(itemDiv);
-        });
-
-
+        UpdateHtml(data)
         
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
 });
+
+
+const UpdateURL_name = (searchInput) => {
+    let searchParams = new URLSearchParams(window.location.search);
+    searchParams.set("name", searchInput);
+    const newURL = `${window.location.pathname}?${searchParams.toString()}`
+    history.replaceState({},'',newURL)
+}
+
+const UpdateHtml = (data)=>{
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; 
+    data.product.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}`;
+        resultsDiv.appendChild(itemDiv);
+    })
+}
