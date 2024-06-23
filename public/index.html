@@ -6,11 +6,28 @@
     <title>ROOT ROUTE</title>
 </head>
 <body>
-    <h1>ROOT ROUTE</h1>
+    <!-- <h1>ROOT ROUTE</h1>
     <a href="http://localhost:3000/search">search ROUTE</a>
-    <a href="http://localhost:3000/Testing"> Testing ROUTE</a>
+    <a href="http://localhost:3000/Testing"> Testing ROUTE</a> -->
+
+    <div class="range">
+        <div class="range-slider">
+          <span class="range-selected"></span>
+        </div>
+        <div class="range-input">
+          <input type="range" class="min" min="0" max="1000" value="0" >
+          <input type="range" class="max" min="0" max="1000" value="1000" >
+        </div>
+        <div class="range-price">      
+          <label for="min">Min</label>
+          <input type="number" name="min" value="0">      
+          <label for="max">Max</label>
+          <input type="number" name="max" value="1000">      
+        </div>
+      </div> 
 
 
+    <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
 
 </body>
