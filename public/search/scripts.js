@@ -1,7 +1,7 @@
 const URLparams = async ()=>{
     const current_url_params = window.location.search
-    const url = new URL('http://localhost:3000/search/api/v1/');
     if (current_url_params){
+        const url = new URL('http://localhost:3000/search/api/v1/');
         try {
             // Fetch data from the server
             const response = await fetch(`${url}${current_url_params.toString()}`);

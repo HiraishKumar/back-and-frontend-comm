@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,17 +20,28 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name"><br><br>
 
-        <label for="number">Number:</label>
-        <input type="number" id="number" name="number"><br><br>
+        <!-- <label for="number">Pr:</label>
+        <input type="number" id="number" name="number"><br><br> -->
 
         <label for="featured"> featured</label>
         <input type="checkbox" id="featured" name="featured" value="true"><br><br>
+        <span>
+            <label for="sort_by_price"> sort by price ^</label>
+            <input type="radio" id="sort_by_price" name="sort" value="price">
+        </span>
 
-        <label for="sort"> sort by price ^</label>
-        <input type="checkbox" id="sort" name="sort" value="price"><br><br>
+        <span>
+            <label for="sort_by_rating"> sort by Rating ^</label>
+            <input type="radio" id="sort_by_rating" name="sort" value="rating">
+        </span><br><br>
+
+        <label for="price_range">Price (between 0 and 1000):</label>
+        <input type="range" id="price_range" name="price_" min="0" max="1000"><br><br>
 
         <input type="submit" value="Submit">
     </form>
+
+    <div id="results"></div>
 
     <script src="scripts.js"></script>
 
@@ -38,8 +49,3 @@
 </body>
 
 </html>
-
-
-
-
-
