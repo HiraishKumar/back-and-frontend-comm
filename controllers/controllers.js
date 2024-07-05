@@ -1,8 +1,5 @@
-
 const Path = require('path')
 const Product = require("../models/products")
-
-
 
 const getSearchitem = async (req,res) =>{
     const {featured,name,sort,fields,page,limit,numericFilters } = req.query
