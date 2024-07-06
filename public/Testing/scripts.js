@@ -1,3 +1,32 @@
+let priceGT_maxval = document.getElementById('price_GT').max
+let priceLT_maxval = document.getElementById('price_LT').min
+
+
+const UpdateHtml = (data)=>{
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; 
+    data.product.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}, Featured: ${item.featured}, Rating: ${item.rating} `;
+        resultsDiv.appendChild(itemDiv);
+    })
+}
+
+const UpdateURL_name = (Params) => {
+    const newURL = `${window.location.pathname}?${Params.toString()}`
+    history.replaceState({},'',newURL)
+}
+
+const UpdateLabel = ()=>{
+    let priceGT_val = document.getElementById('price_GT').value
+    document.getElementById("price_GT_val").innerHTML=priceGT_val
+    console.log(priceGT_val)
+    
+    let priceLT_val = document.getElementById('price_LT').value
+    document.getElementById("price_LT_val").innerHTML=priceLT_val
+    console.log(priceLT_val)
+}
+
 const CheckURLuponLoad = async ()=>{
     const current_url_params = window.location.search
     if (current_url_params){
@@ -25,7 +54,7 @@ const CheckURLuponLoad = async ()=>{
 }
 
 CheckURLuponLoad();
-
+UpdateLabel();
 
 document.addEventListener('DOMContentLoaded', (event) =>{
     const form = document.getElementById('myForm');
@@ -39,12 +68,21 @@ document.addEventListener('DOMContentLoaded', (event) =>{
         //append Form data into a search parameters format 
         const Params = new URLSearchParams();
         formData.forEach((value, key) => {
-            Params.append(key,value)
+            // console.log(key)
+            // console.log(value)
+            if (key != "priceGT" && key != "priceLT"){
+                Params.append(key,value)
+            }  
+            if (key == "priceGT" && value != `${priceGT_maxval/2}`){
+                Params.append(key,value)
+            }
+            if (key == "priceLT" && value != `${priceGT_maxval/2}`){
+                Params.append(key,value)
+            }    
         });
-       
         // Update URL search params according to form data
         UpdateURL_name(Params)
-
+        UpdateLabel();
         // Create URL object 
         const url = new URL('http://localhost:3000/search/api/v1/') 
         try {
@@ -69,21 +107,9 @@ document.addEventListener('DOMContentLoaded', (event) =>{
         }        
 
     });
+    
 });
 
 
 
-const UpdateHtml = (data)=>{
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; 
-    data.product.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.textContent = `Name: ${item.name}, Price: ${item.price}, Featured: ${item.featured}, Rating: ${item.rating} `;
-        resultsDiv.appendChild(itemDiv);
-    })
-}
 
-const UpdateURL_name = (Params) => {
-    const newURL = `${window.location.pathname}?${Params.toString()}`
-    history.replaceState({},'',newURL)
-}

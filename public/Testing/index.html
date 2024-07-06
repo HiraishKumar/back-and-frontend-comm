@@ -34,14 +34,19 @@
             <label for="sort_by_rating"> sort by Rating ^</label>
             <input type="radio" id="sort_by_rating" name="sort" value="rating">
         </span><br><br>
+        <span>
+            <label for="price_GT">Price greater than:</label>
+            <label id="price_GT_val" for="price_GT">value</label>
+            <input type="range" id="price_GT" name="priceGT" min="0" max="500">
+        </span>
 
-        <label for="price_GT">Price greater than:</label>
-        <label for="price_GT">value</label>
-        <input type="range" id="price_GT" name="priceGT" min="0" max="1000"><br><br>
+        <span>
+            <label for="price_LT">Price less than :</label>
+            <label id="price_LT_val" for="price_LT">value</label>
+            <input type="range" id="price_LT" name="priceLT" min="0" max="500">            
+        </span>
 
-        <label for="price_LT">Price less than :</label>
-        <label for="price_LT">value</label>
-        <input type="range" id="price_LT" name="priceLT" min="0" max="1000"><br><br>
+        <br><br>
 
         <input type="submit" value="Submit">
     </form>
