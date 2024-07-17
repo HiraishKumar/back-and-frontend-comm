@@ -7,11 +7,6 @@ const router = require('./routers/routers');
 
 const app = express()
 
-
-
-// app.get('/', (req,res)=>{
-    //     res.send('<h1>THIS THE ROOT ROUTE</h1>').status(200)
-    // })
 app.use(express.json())
 app.use('/',router)
 app.use(express.static('./public'))
